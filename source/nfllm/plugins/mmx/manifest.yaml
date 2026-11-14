@@ -1,0 +1,32 @@
+manifest_version: 1
+id: "mmx-i8-f32"
+version: "0.1.0"
+type: "static_library"
+plugin_id: "0x4d4d5831"
+abi:
+  minimum: 1
+  maximum: 1
+  entrypoint: "nfllm_register_mmx_plugin"
+  operations:
+    - "NFLLM_OP_MATVEC_F32"
+platforms:
+  - "MS-DOS 32-bit with DOS/4GW or compatible DPMI extender"
+  - "NF-DOS guest using the Open Watcom DOS target"
+cpu:
+  architecture: "x86"
+  minimum_isa: "386+x87+MMX"
+  required_capabilities: ["386", "x87", "MMX"]
+  selection: "Manual MMX profile; never selected by the default 386+x87 profile."
+  emulated_validation: "QEMU MMX-capable CPU proxy; not physical Geode/Atom hardware."
+numerics:
+  method: "Per-row symmetric signed-int8 quantization of F32 weights and activations, MMX PMADDWD dot, scale restoration."
+  accuracy: "Approximate; validation uses explicit error tolerance, not bitwise equality."
+  cleanup: "EMMS before returning so x87 state is available to DOS/4GW and callers."
+license:
+  status: "declared_by_project_owner"
+  spdx_identifier: "MIT"
+performance:
+  optimization_claimed: false
+  benchmark_status: "F32 exploratory path was slower and diverged during four-token generation; Q8_0/Q4_0 functional inference passed on Athlon proxy and Atom N270, but the N270 one-token timings are not a controlled benchmark."
+dynamic_loading: false
+status: "Q8_0/Q4_0 kernels validated in QEMU ISA profiles; F32 remains experimental and is not accepted for long-generation fidelity."

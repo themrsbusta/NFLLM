@@ -1,0 +1,47 @@
+manifest_version: 1
+id: "reference-x87"
+version: "1.0.0"
+type: "static_library"
+plugin_id: "0x52454631"
+abi:
+  minimum: 1
+  maximum: 1
+  entrypoint: "nfllm_register_reference_plugin"
+platforms:
+  - "MS-DOS 32-bit with DOS/4GW or compatible DPMI extender"
+  - "NF-DOS guest using the Open Watcom DOS target"
+cpu:
+  architecture: "x86"
+  minimum_isa: "80386"
+  required_capabilities:
+    - "386"
+    - "x87"
+  detection: "Runtime uses an explicit profile; the guest EFLAGS.ID probe was inconclusive under DOS/4GW. No CPUID instruction is executed by NFLLM."
+  cpuid_instruction_executed: false
+  cpuid_probe: "EFLAGS.ID was not observed to change under DOS/4GW; this does not establish that the CPU lacks CPUID."
+priority: 100
+dependencies:
+  - "NFLLM ABI v1 headers"
+  - "NFLLM static registry"
+license:
+  status: "declared_by_project_owner"
+  spdx_identifier: "MIT"
+performance:
+  optimization_claimed: false
+  benchmark_status: "measured_three_interleaved_tiny1m_runs"
+  benchmark_model: "Tiny1M Q8_0/Q4_0 comparison; same 30-token prompt and one generated token"
+  median_generation_ticks: 11479
+  clock_rate_hz: 1000
+  speedup_claimed: false
+configuration:
+  source: "src/nfllm_reference_kernels.c"
+  compiler: "Open Watcom wcl386"
+  compiler_flags:
+    - "-bt=dos"
+    - "-3"
+    - "-fpi87"
+    - "-ot"
+  archive_format: "Open Watcom OMF .lib"
+  selection: "--backend auto or --backend reference"
+  dynamic_loading: false
+status: "functionally validated on the 86Box Am486DX4/96MiB profile; no performance claim"
