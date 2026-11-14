@@ -95,7 +95,7 @@ static void print_cpu(void)
                (regs.eax >> 8) & 0x0f,
                (regs.eax >> 4) & 0x0f,
                regs.eax & 0x0f);
-        printf("CPU FPU flag: %s\n", (regs.edx & 1UL) ? "presente" : "ausente");
+        printf("CPU FPU flag: %s\n", (regs.edx & 1UL) ? "present" : "absent");
     }
 }
 
@@ -153,7 +153,7 @@ static int verify_model_file(const char *path)
     }
     if (fseek(file, 0L, SEEK_END) != 0 || (size = ftell(file)) < 4L ||
         fseek(file, 0L, SEEK_SET) != 0 || fread(magic, 1, 4, file) != 4) {
-        printf("GGUF file: leitura/tamanho falhou para %s\n", path);
+        printf("GGUF file: read/size check failed for %s\n", path);
         fclose(file);
         return 0;
     }
