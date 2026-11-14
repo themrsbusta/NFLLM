@@ -73,7 +73,7 @@ See [`scripts/README.md`](scripts/README.md) for the environment-specific
   unverified.
 - The full upstream `llama.cpp` runtime has not been ported.
 - Insufficient-memory behavior and broader CPU compatibility still need work.
-- A public binary release is not included in this initial source publication.
+- The DOS binary is available in the [v0.1.0-beta release](https://github.com/themrsbusta/NFLLM/releases/tag/v0.1.0-beta). The ZIP contains `NFLLM.EXE`; it does not contain DOS/4GW or model weights.
 
 ## Source provenance and licensing
 
