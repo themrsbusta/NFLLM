@@ -1,0 +1,10 @@
+NFLLM compatibility probe 0.1
+Target contract: NF-DOS / DOS-4G / 386 ISA baseline / Am486DX4.
+sizeof(char/int/long/pointer): 1/4/4/4
+DOS version: 7.10
+CPU CPUID: nao disponivel; nenhuma instrucao CPUID foi executada.
+DPMI AX=0500 largest free block: 65669120 bytes
+DPMI advisory page fields: max_unlocked=16032 max_locked=16032 linear=16127 unlocked=16032 free_physical=16035 total_physical=16127 free_linear=16035 paging_file=4294967295 pages
+x87 arithmetic: 5.25; clock ticks: 0
+GGUF file: C:\TINY1M.GGF; 3754048 bytes; magic GGUF
+Probe result: PASS

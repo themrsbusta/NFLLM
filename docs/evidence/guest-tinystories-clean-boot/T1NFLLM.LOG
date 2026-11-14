@@ -1,0 +1,11 @@
+NFLLM 0.1 - NF-DOS / Am486DX4
+Scalar F32 LLaMA GGUF; 386 ISA baseline; x87; single-threaded.
+GGUF v3: arch=llama tokenizer=llama F32
+Model: vocab=512 dim=128 layers=4 heads=2 kv_heads=2 ffn=352 ctx=256
+GGUF bytes=3754048 tensors=39 alignment=32
+Prompt tokens=30; KV cache=1048576 bytes; DOS/4GW memory budget checked by allocation.
+Heap payload: model=3754048 KV=1048576 auxiliary=3072 total=4805696 bytes (allocator/runtime overhead excluded).
+Generated tokens: 
+TOKEN[0] id=411 text="e"
+Generation tokens=1 ticks=12248 clock_rate=1000
+Status: PASS - logits and token IDs were computed from GGUF weights.

@@ -1,0 +1,3 @@
+NFLLM 0.1 - NF-DOS / Am486DX4
+Scalar F32 LLaMA GGUF; 386 ISA baseline; x87; single-threaded.
+ERROR: cannot open model C:\NOFILE.GGF
