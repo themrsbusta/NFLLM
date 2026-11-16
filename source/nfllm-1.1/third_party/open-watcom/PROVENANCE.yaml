@@ -1,0 +1,18 @@
+schema_version: 1
+component: Open Watcom C/C++ DOS toolchain
+product_version: "2.0"
+license: "Sybase Open Watcom Public License 1.0"
+license_file: LICENSE.txt
+license_sha256: B5E6676779126951C3BF84547B577EC7370B073791CA6072AA5568C62A2D7AEF
+source_project: https://github.com/open-watcom/open-watcom-v2
+local_toolchain_used_for_build: "NF-DOS-6.0/tools/watcom2026"
+compiler_version_info: "wcl386.exe FileVersion 2.0; ProductVersion 2.0"
+compiler_binaries_in_release: false
+static_runtime_modules_observed_in_nfllm_link_map:
+  - clib3r.lib
+  - math387r.lib
+  - plib3r.lib
+note: >-
+  The license text was copied from the same local toolchain installation used
+  for the 1.1 build. The final executables statically link referenced runtime
+  modules; the compiler installation itself is not redistributed.

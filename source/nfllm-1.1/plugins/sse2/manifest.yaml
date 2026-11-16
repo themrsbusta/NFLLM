@@ -1,0 +1,33 @@
+manifest_version: 1
+id: "sse2-f32"
+version: "0.1.0"
+type: "static_library"
+plugin_id: "0x53534532"
+abi:
+  minimum: 1
+  maximum: 1
+  entrypoint: "nfllm_register_sse2_plugin"
+  operations:
+    - "NFLLM_OP_MATVEC_F32"
+platforms:
+  - "NF-DOS 32-bit using NFLLM 1.1 with DOS/32A bound in the executable; no external DOS4GW required"
+  - "Isolated Atom N270 QEMU test profile with CR4.OSFXSR enabled"
+cpu:
+  architecture: "x86"
+  minimum_isa: "386+x87+SSE+SSE2"
+  required_capabilities: ["x87", "SSE", "SSE2", "CR4.OSFXSR"]
+  selection: "Manual Atom profile only; disabled when OSFXSR is clear and never selected on the 486 profile."
+  emulated_validation: "QEMU Atom N270 proxy only; no physical Atom/DPMI configuration has been validated."
+numerics:
+  accumulation: "Four-lane binary32 MULPS/ADDPS with scalar odd tail; rounding may differ from x87."
+  alignment: "MOVUPS accepts unaligned row and input pointers."
+  os_state: "Requires OSFXSR; the test-only COM changes CR4 in an isolated QEMU guest and does not establish general DOS/DPMI context-save safety."
+license:
+  status: "project_source_mit"
+  spdx_identifier: "MIT"
+  file: "../../LICENSE"
+performance:
+  optimization_claimed: false
+  benchmark_status: "Three-run QEMU N270 comparison completed; timings are proxy-specific and OSFXSR/DOS-DPMI context safety remains unverified."
+dynamic_loading: false
+status: "Functionally and comparatively validated in an isolated QEMU N270 guest; experimental and manually selected outside that test until DOS/DPMI XMM-state handling is established."

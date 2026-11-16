@@ -1,0 +1,16 @@
+SB/32A -- Bind Utility version 26.1.2
+Copyright (C) 1996-2006 by Narech K.
+
+Application Name:   "NFMMX.RAW"
+Application Size:   46212 bytes
+Application Type:   Unknown Stub File bound to
+                    LE-style file format Linear Executable
+
+  Unbinding file:   "NFMMX.RAW"
+Destination file:   "NFMMX.LE"
+Destination size:   45668 bytes (98.8%)
+
+    Binding file:   "NFMMX.LE"
+Destination file:   "NFMMX.EXE"
+Destination size:   74036 bytes (160.2%)
+  Stub file used:   "DOS32A.EXE"

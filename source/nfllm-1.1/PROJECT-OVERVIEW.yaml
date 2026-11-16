@@ -1,0 +1,166 @@
+schema_version: 1
+project:
+  name: NFLLM
+  organization: Panthera Softwares
+  purpose: >-
+    Protótipo de inferência LLaMA em GGUF para DOS de 32 bits, criado para
+    validar formatos de modelo, kernels e compatibilidade em computadores
+    legados. O escopo atual é uma implementação restrita; não é o porte completo
+    do llama.cpp upstream.
+
+status:
+  prototype: funcional_em_nf_dos_e_86box
+  completed_work: >-
+    As etapas 1, 2 e 3 estão concluídas segundo seus critérios e evidências
+    documentados, incluindo geração verificada de tokens em convidados DOS e
+    validação de kernels em perfis QEMU específicos.
+  upstream_llama_cpp_port: pendente; objetivo separado e futuro
+  release_1_0:
+    title: Experimental Research Release
+    state: published_as_v1.0_on_GitHub
+    github_release: https://github.com/themrsbusta/NFLLM/releases/tag/v1.0
+  release_1_1:
+    scope: DOS/32A-bound build derived from the 1.0 source tree
+    state: implemented_and_smoke_verified
+    github_tag: v1.1
+    github_release_kind: regular_release; prerelease_false
+    original_1_0_modified: false
+
+target:
+  emulator: 86Box 6.0, Windows build 9001
+  cpu: AMD Am486DX4 a 100 MHz
+  memory_mib: 96
+  operating_system: NF-DOS 5 build 5.01.3314 / DOS 7.10
+  extender_1_0_baseline: DOS/4GW 1.97
+  extender_1_1_target: DOS/32A bound into the final LE executables with SB /B
+  extender_1_1_status: build_and_nfdos_v23_qemu_486_smoke_passed; 86box_am486_retest_pending
+  compiler: Open Watcom DOS/4G
+  baseline: 386+x87, aritmética escalar F32 e execução single-thread
+
+model_support:
+  container: GGUF v3
+  architecture: llama
+  formats:
+    - F32
+    - Q8_0
+    - Q4_0
+    - Q2_0
+    - Q2_K
+    - IQ3_XXS
+    - IQ3_S
+  fixtures:
+    - TinyStories
+    - Tiny1M
+  note: >-
+    A lista representa o subconjunto validado. Ela não implica suporte a outras
+    arquiteturas, formatos GGML ou modelos em geral.
+
+runtime_design:
+  inference_entry: NFLLM.cpp
+  core: >-
+    O programa carrega o modelo GGUF, prepara os dados e executa a inferência
+    no caminho DOS/4GW na versão 1.0. Na versão 1.1, o código de inferência
+    permanece igual e cada LE é ligado ao DOS/32A por SB /B durante o build.
+    Decodificadores de linha quantizada e kernels de multiplicação por vetor
+    são despachados por plugins com fallback de referência F32.
+  runtime_1_1:
+    dos4g_link_target: usado pelo linker Watcom apenas para gerar LE compatível
+    dos32a_binding: SB /B /BN injeta o extender no executável final
+    external_dos4gw_exe_required: false
+    runtime_self_contained: true
+    source_amalgamation: false
+    source_identity: DOS/32A permanece identificado como componente third-party
+    required_acknowledgment: "This product uses DOS/32 Advanced DOS Extender technology."
+    binary_runtime_license: Open Watcom runtime terms documented in third_party/open-watcom/LICENSE.txt
+  plugin_abi: C v1
+  plugin_libraries: bibliotecas OMF .lib estáticas produzidas pelo Open Watcom
+  baseline_policy: >-
+    A execução de referência permanece compatível com 386+x87. Extensões de ISA
+    são opcionais e dependem de seleção e condições de execução documentadas.
+  quantized_direct_kernels: >-
+    Os kernels diretos Q8_0, Q4_0, Q2_0, Q2_K, IQ3_XXS e IQ3_S usam aritmética
+    escalar 386+x87; resultados de tempo variam por formato e perfil de teste.
+
+build:
+  entry_point: build-dos.cmd
+  module_configuration: build-modules.cmd
+  toolchain_path: ..\NF-DOS-6.0\tools\watcom2026
+  flow:
+    - Configura WATCOM, PATH, INCLUDE e bibliotecas do compilador.
+    - Cria os diretórios de saída em build/.
+    - Chama build-modules.cmd para configurar módulos e plugins.
+    - Compila as fontes DOS com wcl386.
+    - Empacota plugins em bibliotecas OMF com wlib e copia seus manifestos.
+    - Vincula cada programa como LE compatível com DOS/4G.
+    - Executa SB /B para embutir o runtime DOS/32A no executável final.
+    - Usa SVER para verificar o binding e não copia DOS4GW.EXE para build/.
+  output_directory: build/
+  note: O toolchain fica fora deste repositório no caminho relativo configurado pelo script.
+
+repository_map:
+  NFLLM.cpp: entrada do programa de inferência
+  src/: lógica, registro e despacho de kernels, plugins integrados, kernels de referência e sondas de compatibilidade
+  plugins/: fontes e manifestos dos plugins de formatos e extensões de ISA
+  tests/: autotestes e testes específicos de kernels/ISA
+  scripts/: auxiliares de build, preparação e validação
+  models/: modelos e fixtures usados no projeto
+  docs/: relatórios, matriz de compatibilidade, benchmarks e limitações
+  handoffs/: YAMLs internos do workspace; não fazem parte do repositório/pacote público
+  build/: saídas locais ignoradas pelo Git; evidência de 1.1 publicada em docs/validation/
+  deliverables/: pacotes locais de revisão/release; não são fontes do projeto
+  upstream/: checkout apenas para referência; deve permanecer sem modificações
+
+validation_evidence:
+  nfllm_1_1_dos32a_binding:
+    status: pass
+    logs:
+      - docs/validation/dos32a-bind/all/
+      - docs/validation/dos32a-bind/isa/
+    runtime_requirement: nenhum DOS4GW.EXE externo ao executável
+    runtime_identification: SVER 26.1.2 em todos os seis executáveis DOS e isa_probe.exe
+    nfdos_v23_smoke:
+      status: pass
+      guest: NF-DOS 6 V23
+      cpu: QEMU genérico 486; TCG single-thread
+      memory_mib: 96
+      selftest: NFTEST.EXE SELFTEST PASS
+      inference: token_id_419; text_s
+      external_extender_tools_in_share: false
+      boot_image_read_only: true
+      boot_image_sha256_before_after: 53C7345445F70B71D93F2094CAE406BF5E79E4B1AE042C94551B6DE6C9B18C62
+      report: docs/validation/nfdos-v23-dos32a-smoke.json
+    exact_86box_am486_retest: pending
+  guest_inference:
+    status: evidências históricas brutas ficam no workspace e não são redistribuídas
+    release_evidence: docs/validation/nfdos-v23-dos32a-smoke.json
+  compatibility_and_kernel_reports:
+    - docs/ETAPA2-RELATORIO-FINAL.md
+    - docs/ETAPA3-RELATORIO-FINAL.md
+    - docs/ETAPA3-DIRECT-Q8-Q4.md
+    - docs/PLUGIN-COMPATIBILITY.md
+    - docs/BENCHMARKS-ETAPA3.md
+    - docs/GEODE-READY.md
+    - docs/ATOM-READY.md
+  interpretation: >-
+    Logs PASS confirmam apenas os casos, modelos, kernels e ambientes registrados
+    neles. Os resultados em QEMU são validação de proxy ISA, não prova de
+    comportamento em hardware físico Geode ou Atom.
+
+limitations:
+  - O projeto ainda não porta o llama.cpp upstream completo.
+  - O suporte atual se limita a GGUF v3, arquitetura llama e formatos listados.
+  - A sonda EFLAGS.ID foi inconclusiva sob DOS/4GW; o perfil ISA é explícito, não autodetectado pelo NFLLM.
+  - Não houve validação em hardware físico Geode ou Atom.
+  - A validação SSE2 ocorreu em convidado isolado com OSFXSR habilitado e não prova segurança XMM geral em DOS/DPMI.
+  - MMX F32 permanece experimental por divergência de tokens e desempenho observado.
+  - Inferência escalar em 486 é lenta, especialmente para formatos quantizados maiores.
+
+canonical_project_documents:
+  stage_handoffs: documentos internos do workspace, não incluídos na distribuição pública
+  progress: documento interno do workspace, não incluído na distribuição pública
+  release_instructions: docs/RELEASE-1.1.md
+  detailed_entry_point: README.md
+
+next_objective:
+  task: portar o llama.cpp upstream para DOS e validar a compatibilidade resultante
+  rule: não tratar a conclusão das etapas NFLLM como conclusão desse porte

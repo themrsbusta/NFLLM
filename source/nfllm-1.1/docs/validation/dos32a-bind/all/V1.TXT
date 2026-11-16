@@ -1,0 +1,10 @@
+SVER -- Version Reporting Utility version 26.1.2
+Copyright (C) 1996-2006 by Narech K.
+
+Application name:
+-----------------
+"NFLLM.EXE"
+
+DOS/32 Advanced DOS Extender:
+-----------------------------
+Version:        26.1.2

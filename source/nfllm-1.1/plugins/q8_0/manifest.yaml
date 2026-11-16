@@ -1,0 +1,57 @@
+manifest_version: 1
+id: "q8_0-x87-dequant"
+version: "1.0.0"
+type: "static_library"
+plugin_id: "0x51383030"
+ggml_type_id: 8
+abi:
+  minimum: 1
+  maximum: 1
+  entrypoint: "nfllm_register_q8_0_plugin"
+  operation: "NFLLM_OP_DEQUANTIZE_ROW_Q8_0"
+  additional_operations:
+    - "NFLLM_OP_MATVEC_Q8_0_ROW (direct packed row, baseline 386+x87)"
+platforms:
+  - "NF-DOS 32-bit using NFLLM 1.1 with DOS/32A bound in the executable; no external DOS4GW required"
+  - "NF-DOS guest using the Open Watcom DOS target"
+cpu:
+  architecture: "x86"
+  minimum_isa: "80386"
+  required_capabilities:
+    - "386"
+    - "x87"
+  detection: "Runtime uses an explicit profile; the guest EFLAGS.ID probe was inconclusive under DOS/4GW. No CPUID instruction is executed by NFLLM."
+  cpuid_instruction_executed: false
+  cpuid_probe: "EFLAGS.ID was not observed to change under DOS/4GW; this does not establish that the CPU lacks CPUID."
+format:
+  block_elements: 32
+  block_bytes: 34
+  fields: "little-endian FP16 scale followed by 32 signed 8-bit values"
+dependencies:
+  - "NFLLM ABI v1 and static registry"
+  - "F32 reference plugin for inference arithmetic"
+  - "Direct packed-row Q8_0 matvec is registered by this plugin; it is not an ISA SIMD kernel"
+license:
+  status: "project_source_mit"
+  spdx_identifier: "MIT"
+  file: "../../LICENSE"
+performance:
+  optimization_claimed: false
+  benchmark_status: "measured_three_interleaved_tiny1m_runs"
+  benchmark_model: "Tiny1M Q8_0; same 30-token prompt and one generated token"
+  median_generation_ticks: 32461
+  baseline_f32_median_ticks: 11479
+  relative_latency_vs_f32: 2.83
+  clock_rate_hz: 1000
+  speedup_claimed: false
+  stage3_direct_matvec:
+    benchmark_summary: "../../build/logs/stage3-direct-q8q4-ab-summary-20261114.json"
+    emulator: "QEMU 11.1.0 generic 486 model, TCG single-thread, 96 MiB"
+    median_ticks: 6481
+    reference_decode_then_f32_median_ticks: 10436
+    direct_vs_reference_speedup: 1.61
+    direct_vs_f32_median_ticks: 6262
+    direct_beats_f32: false
+    repetitions: 3
+dynamic_loading: false
+status: "row decoder and GGUF integration validated in 86Box Am486DX4/96MiB; see ETAPA2-RELATORIO-FINAL.md"
