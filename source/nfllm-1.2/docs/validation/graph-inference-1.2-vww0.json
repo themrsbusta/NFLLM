@@ -1,0 +1,44 @@
+{
+  "task_id": "nfllm12-nfmodelio-nfgraphvm-nfint8ops-vww0-20261119",
+  "started_at_utc": "2026-11-19T09:30:58.584514+00:00",
+  "finished_at_utc": "2026-11-19T09:34:00.918498+00:00",
+  "result": "PASS",
+  "emulator": {
+    "name": "DOSBox-X",
+    "cpu_profile": "486",
+    "ram_mib": 96,
+    "guest_os": "FreeDOS 1.4",
+    "timing_note": "Functional 486 profile at accelerated cycles; not cycle-accurate AMD Am486DX4 performance."
+  },
+  "inference": {
+    "model": "MIT HAN Lab MCUNet mcunet-10fps_vww / mcunet-vww0",
+    "model_bytes": 543248,
+    "model_sha256": "4676b97e2fe775929b1538446a120173ab0e1a0f94a1d81e7322f09fee9b3d1d",
+    "input_bytes": 12288,
+    "input_sha256": "e375d418e76a6ccc5ad342ea32f787f8cddb5ebae852d2efad4c64981fe95658",
+    "reference_runtime": "ai-edge-litert 2.3.0 CPU Interpreter",
+    "reference_logits_int8": [
+      7,
+      -7
+    ],
+    "nfllm_dos_console_output": "NFLLM 1.2 - extensible DOS inference runtime\r\nCPU compatibility mask: 0x00002003 (CPUID verified)\r\n[plugin:3] registered NFLLM plugin\r\nPlugin loaded: NFLLM ModelIO TFLite v3 Adapter 1.0.0 (priority 100)\r\n[plugin:3] registered NFLLM plugin\r\nPlugin loaded: NFLLM GraphVM INT8 Runtime 1.0.0 (priority 100)\r\n[plugin:3] registered NFLLM plugin\r\nPlugin loaded: NFLLM Int8Ops Kernel Pack 1.0.0 (priority 100)\r\nInstalled plugins loaded: 3\r\nTOKEN[0] id=0 text=\"class=0 logits=[7,-7]\"\r\nExternal plugin generation: external format and architecture plugins completed; tokens=1\r\n",
+    "plugin_packages": [
+      "NFMODEL",
+      "NFGRAPH",
+      "NFINT8OP"
+    ],
+    "host_sha256": "95c86ed8ee4ca0dcaf00be98764dda94d666bcdc269f8835ad917e314ace1ae7"
+  },
+  "checks": {
+    "vm_completed": true,
+    "nfllm_exit_success": true,
+    "all_three_plugin_packages_loaded": true,
+    "one_classification_token_emitted": true,
+    "int8_logits_exactly_match_litert": true,
+    "model_sha256_verified": true,
+    "input_sha256_verified": true,
+    "nfllm_host_executable_unchanged": true,
+    "emulator_exited": true,
+    "not_timed_out": true
+  }
+}

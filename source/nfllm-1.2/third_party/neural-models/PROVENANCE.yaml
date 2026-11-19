@@ -1,0 +1,34 @@
+schema_version: 1
+purpose: "Attribution and provenance for the NFLLM TinyML interoperability work."
+implementation:
+  status: "Original NFLLM C implementation."
+  copied_upstream_source: false
+  generated_upstream_kernels: false
+  linked_upstream_libraries: false
+  build_runtime_dependencies:
+    - "NFLLM public plugin SDK"
+    - "Open Watcom/CauseWay toolchain and loader"
+  design_references:
+    - project: "TinyEngine"
+      repository: "https://github.com/mit-han-lab/tinyengine"
+      license: "MIT"
+      use: "Behavior, operator family and deployment concepts were studied; no source code was incorporated."
+    - project: "MCUNet"
+      repository: "https://github.com/mit-han-lab/mcunet"
+      license: "MIT"
+      use: "Public model family and official test-model provenance; no source code was incorporated."
+  validation_only:
+    models:
+      - file: "mcunet-10fps_vww.tflite"
+        upstream_release: "https://hanlab18.mit.edu/projects/tinyml/mcunet/release/"
+        sha256: "4676b97e2fe775929b1538446a120173ab0e1a0f94a1d81e7322f09fee9b3d1d"
+        bundled: false
+      - file: "mcunet-5fps_vww.tflite"
+        upstream_release: "https://hanlab18.mit.edu/projects/tinyml/mcunet/release/"
+        sha256: "d878916e93f59e63949ce9b8e1a585382d466d3b94d751b9f1628a7753e03c24"
+        bundled: false
+    numerical_oracle:
+      project: "LiteRT"
+      repository: "https://github.com/google-ai-edge/LiteRT"
+      bundled: false
+      build_dependency: false

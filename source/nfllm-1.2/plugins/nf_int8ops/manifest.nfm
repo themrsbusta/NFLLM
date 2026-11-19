@@ -1,0 +1,7 @@
+plugin_id=0x49384F50
+name=NFLLM Int8Ops Kernel Pack
+version=1.0.0
+abi_version=1
+required_capabilities=0x00000003
+priority=100
+entrypoint=_NFLLM_PluginQueryV1

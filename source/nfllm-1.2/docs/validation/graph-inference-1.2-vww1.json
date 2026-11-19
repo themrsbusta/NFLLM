@@ -1,0 +1,46 @@
+{
+  "task_id": "nfllm12-nfmodelio-nfgraphvm-nfint8ops-vww1-20261119",
+  "started_at_utc": "2026-11-19T09:34:13.403360+00:00",
+  "finished_at_utc": "2026-11-19T09:35:40.488098+00:00",
+  "result": "PASS",
+  "emulator": {
+    "name": "DOSBox-X",
+    "cpu_profile": "486",
+    "ram_mib": 96,
+    "guest_os": "FreeDOS 1.4",
+    "timing_note": "Functional 486 profile; this is not cycle-accurate AMD Am486DX4 timing."
+  },
+  "inference": {
+    "model": "mcunet-vww1 / mcunet-5fps_vww",
+    "model_bytes": 635968,
+    "model_sha256": "d878916e93f59e63949ce9b8e1a585382d466d3b94d751b9f1628a7753e03c24",
+    "model_source": "https://hanlab18.mit.edu/projects/tinyml/mcunet/release/mcunet-5fps_vww.tflite",
+    "input_bytes": 19200,
+    "input_sha256": "651d102b6d057fd2b559f10f001aa5cdabef1933100417c0c30a826140cdb1fe",
+    "reference_runtime": "ai-edge-litert 2.3.0 CPU Interpreter, OpResolverType.BUILTIN_REF, XNNPACK disabled, preserve_all_tensors enabled",
+    "reference_logits_int8": [
+      -3,
+      2
+    ],
+    "nfllm_dos_console_output": "NFLLM 1.2 - extensible DOS inference runtime\r\nCPU compatibility mask: 0x00002003 (CPUID verified)\r\n[plugin:3] registered NFLLM plugin\r\nPlugin loaded: NFLLM ModelIO TFLite v3 Adapter 1.0.0 (priority 100)\r\n[plugin:3] registered NFLLM plugin\r\nPlugin loaded: NFLLM GraphVM INT8 Runtime 1.0.0 (priority 100)\r\n[plugin:3] registered NFLLM plugin\r\nPlugin loaded: NFLLM Int8Ops Kernel Pack 1.0.0 (priority 100)\r\nInstalled plugins loaded: 3\r\nTOKEN[0] id=1 text=\"class=1 logits=[-3,2]\"\r\nExternal plugin generation: external format and architecture plugins completed; tokens=1\r\n",
+    "guest_status_marker": "NFLLM_OK",
+    "plugin_packages": [
+      "NFMODEL",
+      "NFGRAPH",
+      "NFINT8OP"
+    ],
+    "host_sha256": "95c86ed8ee4ca0dcaf00be98764dda94d666bcdc269f8835ad917e314ace1ae7"
+  },
+  "checks": {
+    "vm_completed": true,
+    "nfllm_exit_success": true,
+    "all_three_plugin_packages_loaded": true,
+    "one_classification_token_emitted": true,
+    "int8_logits_exactly_match_litert": true,
+    "model_sha256_verified": true,
+    "input_sha256_verified": true,
+    "nfllm_host_executable_unchanged": true,
+    "emulator_exited": true,
+    "not_timed_out": true
+  }
+}

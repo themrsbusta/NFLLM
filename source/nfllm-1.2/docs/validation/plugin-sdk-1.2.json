@@ -1,0 +1,188 @@
+{
+  "schema_version": 2,
+  "project": "NFLLM 1.2 Plugin SDK",
+  "status": "PASS",
+  "verified_at_utc": "2026-11-19T06:57:50.776334+00:00",
+  "names_and_package_contract": {
+    "modules": [
+      {
+        "basename": "NFMODEL",
+        "filename": "NFMODEL.NFD",
+        "manifest": "NFMODEL.NFM",
+        "display_name": "NFLLM ModelIO TFLite v3 Adapter",
+        "role": "model_format",
+        "bytes": 24261,
+        "sha256": "5daff34783f2a373205b99081eff1fedc67c1af99fb3d17861f54f160cbadce2"
+      },
+      {
+        "basename": "NFGRAPH",
+        "filename": "NFGRAPH.NFD",
+        "manifest": "NFGRAPH.NFM",
+        "display_name": "NFLLM GraphVM INT8 Runtime",
+        "role": "neural_architecture_and_activation_planner",
+        "bytes": 24437,
+        "sha256": "a0e8cdcef1e462e7e9adab2a3d5d985e109f9e2aeab7c06349e9e5470de8ed61"
+      },
+      {
+        "basename": "NFINT8OP",
+        "filename": "NFINT8OP.NFD",
+        "manifest": "NFINT8OP.NFM",
+        "display_name": "NFLLM Int8Ops Kernel Pack",
+        "role": "six_scalar_INT8_operator_kernels",
+        "bytes": 28693,
+        "sha256": "36f4c679c96f8d74a23ed9b22d6cf43d5dfb52d1652738bc7d6dde10405d6a03"
+      }
+    ],
+    "extension": ".NFD",
+    "manifest_extension": ".NFM",
+    "dos_basename": "8.3",
+    "old_upstream_names_used_as_plugin_identifiers": false,
+    "public_graph_header": "sdk/include/nfllm_graph_sdk.h",
+    "build_helper": "plugins/build-nfllm-extensions.cmd"
+  },
+  "host_build": {
+    "result": "PASS",
+    "entry_point": "build-dos.cmd",
+    "toolchain": "Open Watcom 2.0 beta Oct 29 2026",
+    "output": "build/NFLLM.EXE and eight bundled CauseWay modules with .NFD filenames",
+    "host_sha256": "95c86ed8ee4ca0dcaf00be98764dda94d666bcdc269f8835ad917e314ace1ae7",
+    "warnings": [
+      "W1027 duplicate __null_int23_exit and __int23_exit definitions ignored by linker"
+    ]
+  },
+  "standalone_builds": {
+    "graph_modules": {
+      "result": "PASS",
+      "entry_point": "plugins/build-nfllm-extensions.cmd",
+      "host_rebuilt_by_module_script": false,
+      "modules": [
+        {
+          "basename": "NFMODEL",
+          "filename": "NFMODEL.NFD",
+          "manifest": "NFMODEL.NFM",
+          "display_name": "NFLLM ModelIO TFLite v3 Adapter",
+          "role": "model_format",
+          "bytes": 24261,
+          "sha256": "5daff34783f2a373205b99081eff1fedc67c1af99fb3d17861f54f160cbadce2"
+        },
+        {
+          "basename": "NFGRAPH",
+          "filename": "NFGRAPH.NFD",
+          "manifest": "NFGRAPH.NFM",
+          "display_name": "NFLLM GraphVM INT8 Runtime",
+          "role": "neural_architecture_and_activation_planner",
+          "bytes": 24437,
+          "sha256": "a0e8cdcef1e462e7e9adab2a3d5d985e109f9e2aeab7c06349e9e5470de8ed61"
+        },
+        {
+          "basename": "NFINT8OP",
+          "filename": "NFINT8OP.NFD",
+          "manifest": "NFINT8OP.NFM",
+          "display_name": "NFLLM Int8Ops Kernel Pack",
+          "role": "six_scalar_INT8_operator_kernels",
+          "bytes": 28693,
+          "sha256": "36f4c679c96f8d74a23ed9b22d6cf43d5dfb52d1652738bc7d6dde10405d6a03"
+        }
+      ]
+    },
+    "external_sdk_fixture": {
+      "result": "PASS",
+      "entry_point": "examples/nfdense/build.cmd",
+      "filename": "NFDENSE.NFD",
+      "bytes": 15872,
+      "sha256": "84d691e886313f958538450a51606a278a29072a887d6fc1cb87e4c2bfe1b89c",
+      "host_sha256_after_build": "95c86ed8ee4ca0dcaf00be98764dda94d666bcdc269f8835ad917e314ace1ae7",
+      "host_rebuilt_by_example_script": false
+    }
+  },
+  "nfd_smoke": {
+    "result": "PASS",
+    "loaded_packages": [
+      "NFMODEL",
+      "NFGRAPH",
+      "NFINT8OP"
+    ],
+    "display_names": [
+      "NFLLM ModelIO TFLite v3 Adapter",
+      "NFLLM GraphVM INT8 Runtime",
+      "NFLLM Int8Ops Kernel Pack"
+    ],
+    "operator_count": 6,
+    "dosbox_x_cpu_profile": "486",
+    "guest_ram_mib": 96
+  },
+  "plugin_lifecycle": {
+    "result": "PASS",
+    "steps": [
+      "baseline",
+      "install",
+      "update",
+      "disable",
+      "remove"
+    ],
+    "checks": {
+      "vm_completed": true,
+      "plugin_install_loads_v1": true,
+      "plugin_update_loads_v2": true,
+      "plugin_disable_sentinel": true,
+      "plugin_remove_unloads": true,
+      "host_exe_unchanged": true,
+      "embedded_host_unchanged": true,
+      "installed_update_bytes_match": true,
+      "emulator_exited": true,
+      "not_timed_out": true
+    },
+    "host_sha256": "95c86ed8ee4ca0dcaf00be98764dda94d666bcdc269f8835ad917e314ace1ae7",
+    "guest_os": "FreeDOS 1.4",
+    "execution_artifacts_bundled": false
+  },
+  "non_gguf_inference": {
+    "result": "PASS",
+    "format": "NFDENSE1",
+    "gguf": false,
+    "generated_tokens": [
+      "a",
+      "b"
+    ],
+    "all_six_extension_categories_listed": true,
+    "host_sha256_unchanged": true,
+    "checks": {
+      "guest_script_completed": true,
+      "plugin_loaded": true,
+      "six_extension_categories_listed": true,
+      "custom_nfdense_format_claimed": true,
+      "prompt_a_generates_a": true,
+      "prompt_b_generates_b": true,
+      "host_hash_unchanged": true,
+      "host_bytes_unchanged_on_guest_disk": true,
+      "vm_exited": true
+    },
+    "execution_artifacts_bundled": false
+  },
+  "real_neural_model_inference": {
+    "result": "PASS",
+    "reports": [
+      "docs/validation/graph-inference-1.2-vww0.json",
+      "docs/validation/graph-inference-1.2-vww1.json"
+    ],
+    "reference": "ai-edge-litert 2.3.0 OpResolverType.BUILTIN_REF",
+    "exact_logits": {
+      "vww0": [
+        7,
+        -7
+      ],
+      "vww1": [
+        -3,
+        2
+      ]
+    },
+    "host_sha256": "95c86ed8ee4ca0dcaf00be98764dda94d666bcdc269f8835ad917e314ace1ae7"
+  },
+  "limitations": [
+    "DOSBox-X 486 profile is a functional proxy, not cycle-accurate AMD Am486DX4 emulation.",
+    "TFLite v3 support is limited to static graphs, signed INT8 activations/weights, INT32 bias, and the six documented operators.",
+    "The two official MCUNet models are external validation fixtures; full framework, generator, model, and operator coverage is not claimed.",
+    "NFModelIO/NFGraphVM/NFInt8Ops modules are loadable in-process; the current prototype does not sandbox plugins or verify signatures."
+  ],
+  "bundled_execution_artifacts": false
+}

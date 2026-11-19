@@ -1,0 +1,7 @@
+plugin_id=0x51383030
+name=q8_0-x87-dequant
+version=1.2.0
+abi_version=1
+required_capabilities=0x00000003
+priority=100
+entrypoint=_NFLLM_PluginQueryV1

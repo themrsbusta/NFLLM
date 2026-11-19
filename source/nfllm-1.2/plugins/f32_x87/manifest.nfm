@@ -1,0 +1,7 @@
+plugin_id=0x52454631
+name=reference-x87
+version=1.2.0
+abi_version=1
+required_capabilities=0x00000002
+priority=100
+entrypoint=_NFLLM_PluginQueryV1

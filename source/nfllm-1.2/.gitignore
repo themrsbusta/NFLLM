@@ -1,0 +1,8 @@
+# NFLLM 1.1 local build outputs and temporary work
+build/
+*.obj
+*.map
+*.bak
+__pycache__/
+*.py[cod]
+*.tempd/

@@ -1,0 +1,107 @@
+BOOT:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ NF-DOS 6.0
+ PANTHERA SOFTWARES - 20th Anniversary - 2006-2026
+ A:\>
+COMMAND: C:
+ A:\>c:
+ C:\>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COMMAND: NFTEST.EXE
+ PASS: IQ3_S grid indexes, direct sign bits and sub-scales decode exactly
+ PASS: direct quantized matvec plugins register on 386+x87
+ PASS: Q8_0 direct packed dot product matches integer reference vector
+ PASS: Q8_0 differential reference row dequantizes
+ PASS: Q8_0 direct matvec agrees with dequantize-then-dot reference
+ PASS: Q8_0 direct matvec rejects non-finite scale without partial output
+ PASS: Q4_0 direct packed dot product matches reference vector
+ PASS: Q4_0 differential reference row dequantizes
+ PASS: Q4_0 direct matvec agrees with dequantize-then-dot reference
+ PASS: direct quantized matvec rejects incorrect packed row size
+ PASS: direct Q2_0/Q2_K/IQ3_XXS/IQ3_S plugins register on 386+x87
+ PASS: Q2_0 direct packed matvec matches dequantize-then-dot across eight blocks
+ PASS: Q2_0 direct matvec rejects a late non-finite scale without output write
+ PASS: Q2_K direct packed matvec matches all scale/min groups across two blocks
+ PASS: Q2_K direct matvec validates both late FP16 scales before output write
+ PASS: IQ3_XXS direct matvec matches grid order, parity signs and scales
+ PASS: IQ3_XXS direct matvec rejects a late non-finite scale without output writ
+e
+ PASS: IQ3_S direct matvec matches high-bit indexes, signs and sub-scales
+ PASS: IQ3_S direct matvec rejects a late non-finite scale without output write
+ PASS: packed-row dispatcher rejects a short ABI-v1 argument struct
+ PASS: packed-row dispatcher rejects a malformed packed byte count
+ PASS: packed-row dispatcher rejects unknown operation IDs
+ SELFTEST: PASS
+ C:\>
+
+COMMAND: NFLLM.EXE STORY.GGU -p Once -n 1
+ DOS/32A -- DOS Extender version 26.1.2
+ Copyright (C) 1996-2006 by Narech K.
+ NFLLM 1.1 - NF-DOS / Am486DX4
+ F32 LLaMA GGUF; 386+x87 baseline; optional manually declared ISA kernels; singl
+e-threaded.
+ Quantized matvec path: direct packed when available
+ GGUF v3: arch=llama tokenizer=llama; tensor formats F32/Q8_0/Q4_0/Q2_0/Q2_K/IQ3
+_XXS/IQ3_S
+ Tensor types: F32=48 Q8_0=0 Q4_0=0 Q2_0=0 Q2_K=0 IQ3_XXS=0 IQ3_S=0
+ Model: vocab=512 dim=64 layers=5 heads=8 kv_heads=4 ffn=172 ctx=2048
+ GGUF bytes=1185376 tensors=48 alignment=32
+ Prompt tokens=8; KV cache=2621440 bytes; DOS extender memory budget checked by
+allocation.
+ Heap payload: model=1185376 KV=2621440 auxiliary=10240 total=3817056 bytes (all
+ocator/runtime overhead excluded).
+ Dispatcher: matvec=reference.matvec.f32; rms_norm=reference.rms_norm.f32; rope=
+reference.rope.f32; selection=auto; declared CPU profile=386+x87 (manual ISA pro
+file; no automatic CPUID).
+ Prompt evaluation tokens=8 ticks=550 clock_rate=1000
+ Generated tokens:
+ TOKEN[0] id=419 text="s"
+ Generation tokens=1 ticks=0 clock_rate=1000
+ Direct packed matvec rows: Q8_0=0 Q4_0=0 Q2_0=0 Q2_K=0 IQ3_XXS=0 IQ3_S=0
+ Status: PASS - logits and token IDs were computed from GGUF weights.
+ C:\>
+

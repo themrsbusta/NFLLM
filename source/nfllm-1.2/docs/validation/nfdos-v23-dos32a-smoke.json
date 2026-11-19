@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "guest": "NF-DOS 6 V23",
+  "cpu": "QEMU generic 486, TCG single-thread",
+  "memory_mib": 96,
+  "boot_image": "NF-DOS 6 V23 image (not distributed)",
+  "boot_image_sha256_before": "53C7345445F70B71D93F2094CAE406BF5E79E4B1AE042C94551B6DE6C9B18C62",
+  "boot_image_sha256_after": "53C7345445F70B71D93F2094CAE406BF5E79E4B1AE042C94551B6DE6C9B18C62",
+  "boot_image_unchanged": true,
+  "model": "TinyStories stories260K-f32.gguf (not distributed)",
+  "model_sha256": "270CBA1BD5109F42D03350F60406024560464DB173C0E387D91F0426D3BD256D",
+  "external_extender_tools_in_guest_share": [],
+  "checks": [
+    {
+      "name": "NFTEST.EXE",
+      "status": "PASS"
+    },
+    {
+      "name": "one-token inference",
+      "status": "PASS",
+      "token_index": "0",
+      "token_id": "419",
+      "token_text": "s"
+    }
+  ],
+  "error": "",
+  "transcript": "guest-transcript.txt",
+  "binaries": {
+    "NFLLM.exe": {
+      "bytes": 112984,
+      "sha256": "8cd193f9431a145d1b804a87bf30760bcf355b9713a22f0a2954b88a24838d9d",
+      "same_hash_as_guest_test_payload": true
+    },
+    "NFTEST.exe": {
+      "bytes": 98480,
+      "sha256": "bb61f2eadaba725e3f462634ab75cc4fc558cd71a90d61302300fdde361a99a4",
+      "same_hash_as_guest_test_payload": true
+    }
+  }
+}
