@@ -184,5 +184,37 @@
     "The two official MCUNet models are external validation fixtures; full framework, generator, model, and operator coverage is not claimed.",
     "NFModelIO/NFGraphVM/NFInt8Ops modules are loadable in-process; the current prototype does not sandbox plugins or verify signatures."
   ],
-  "bundled_execution_artifacts": false
+  "bundled_execution_artifacts": false,
+  "release_artifact_identity": {
+    "scope": "Graph plugin NFD files supplied in the DOS runtime ZIP",
+    "comparison": "The release files are not byte-identical to the NFD outputs hashed in this validation report.",
+    "cause_of_difference": "unknown; no binary-level cause has been confirmed",
+    "handoff_verification": "The handoff reports graph package loading and VWW0/VWW1 inference, but does not identify the tested NFD files by SHA-256.",
+    "modules": [
+      {
+        "filename": "NFMODEL.NFD",
+        "release_bytes": 24269,
+        "release_sha256": "7a3b343b1faaea6e3b28a4535a8c760e72ec131c57e801801a3197d3feac9b28",
+        "validation_build_bytes": 24261,
+        "validation_build_sha256": "5daff34783f2a373205b99081eff1fedc67c1af99fb3d17861f54f160cbadce2",
+        "size_delta_bytes": 8
+      },
+      {
+        "filename": "NFGRAPH.NFD",
+        "release_bytes": 24441,
+        "release_sha256": "a0f04d202af0319810b277eedf70c4d499d9159cdaa2f68c0c530e2c212b75fc",
+        "validation_build_bytes": 24437,
+        "validation_build_sha256": "a0e8cdcef1e462e7e9adab2a3d5d985e109f9e2aeab7c06349e9e5470de8ed61",
+        "size_delta_bytes": 8
+      },
+      {
+        "filename": "NFINT8OP.NFD",
+        "release_bytes": 28697,
+        "release_sha256": "9e29f1a2f908c86a76fab7bd373e2aaae8290b7ac1b056407849984680611105",
+        "validation_build_bytes": 28693,
+        "validation_build_sha256": "36f4c679c96f8d74a23ed9b22d6cf43d5dfb52d1652738bc7d6dde10405d6a03",
+        "size_delta_bytes": 8
+      }
+    ]
+  }
 }

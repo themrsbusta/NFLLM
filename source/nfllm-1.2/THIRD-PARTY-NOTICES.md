@@ -1,4 +1,4 @@
-# Third-party notices — NFLLM 1.2 development tree
+# Third-party notices — NFLLM 1.2 source and runtime release
 
 ## NFLLM-authored source
 
@@ -26,7 +26,11 @@ Build provenance and the license-file hash are recorded in
 [`third_party/open-watcom/PROVENANCE.yaml`](third_party/open-watcom/PROVENANCE.yaml).
 The toolchain itself is not bundled as part of the NFLLM plugin SDK. Review and
 preserve the included license and notices with any distribution that contains
-linked runtime components.
+linked runtime components. The Open Watcom source and license are available at
+the [official Open Watcom repository](https://github.com/open-watcom/open-watcom-v2);
+the included binaries use its Watcom-1.0-licensed runtime components. The DOS
+runtime release documentation identifies this source location and the included
+license file.
 
 The DOS/32A source, documentation, build wrapper and license retained at
 `third_party/dos32a/` are historical NFLLM 1.1 material; the 1.2

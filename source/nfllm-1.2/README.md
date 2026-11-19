@@ -1,7 +1,7 @@
 # NFLLM 1.2 — extensible DOS inference runtime
 
-NFLLM 1.2 is the separate development tree for a loadable plugin architecture
-on 32-bit DOS. It keeps the existing NFLLM 1.0 and 1.1 trees intact.
+NFLLM 1.2 is an experimental research release of a loadable plugin architecture
+for 32-bit DOS. It keeps the existing NFLLM 1.0 and 1.1 trees intact.
 
 The host executable loads independently built CauseWay modules with the
 `.NFD` plugin-file extension from `PLUGINS` beside `NFLLM.EXE`. Operators,
@@ -73,6 +73,11 @@ start. The loader has no package dependency resolver, signature verification or
 GUI installer; only install code you trust because plugin modules run in the host
 process.
 
+The source tree includes an SSE2 plugin implementation, but the DOS runtime
+release does not ship an SSE2 package: safe XMM-state handling under DOS/DPMI
+has not been established. The runtime ZIP lists the packages it actually
+contains.
+
 ## Build and validation
 
 Set `WATCOM` to the Open Watcom installation and run `build-dos.cmd`. This emits
@@ -105,8 +110,11 @@ independent plugins. PDR is not a dependency. The separate `llama.cpp` upstream
 port remains a distinct objective.
 
 NFLLM 1.0 and 1.1 information and validation documents retained in `docs/` are
-historical unless explicitly labeled 1.2. NFLLM 1.2 remains a development
-version; this source commit does not create a release or tag.
+historical unless explicitly labeled 1.2. This source tree corresponds to
+`v1.2.0`, titled **NFLLM 1.2.0 — Experimental Research Release**. The release
+is available at the [GitHub release page](https://github.com/themrsbusta/NFLLM/releases/tag/v1.2.0).
+This source tree is a separate asset from the DOS runtime package. See
+[`docs/RELEASE-1.2.0.md`](docs/RELEASE-1.2.0.md) for its exact scope.
 
 ## Licensing
 

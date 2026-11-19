@@ -14,11 +14,10 @@ source:
   source_binary_build_match: unverified
   reason:
     - The checked-in source ref is v26.1 while the available Open Watcom package is labeled 26.1.2.
-    - The source build requires historical TASM 5.3; that assembler is not installed in this environment.
+    - The historical source build requires TASM 5.3, which is not included in this source tree.
 
 binary_package:
-  origin: Open Watcom DOS/32A package already present in the NF-DOS 6 workspace.
-  archive_path_outside_this_tree: NF-DOS-6.0/sources/third-party/dos32a-26.1.2.zip
+  origin: Open Watcom DOS/32A package; the archive is not included in this source tree.
   archive_sha256: 8AF6E4D506986CD59403868CBA97C72DBAFA2C639F80F532C0D917821F3BD02C
   files:
     - path: bin/DOS32A.EXE
