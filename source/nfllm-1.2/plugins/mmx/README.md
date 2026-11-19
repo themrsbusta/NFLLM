@@ -24,6 +24,6 @@ independent Q8_0/Q4_0 matrix kernels.
 The isolated test covers a non-empty packed group, an odd scalar tail,
 quantization error tolerance, rejection of non-finite input without partial
 output, and x87 arithmetic after `EMMS`. QEMU validation is an ISA proxy only;
-it does not prove behavior on physical Geode hardware. See
-`docs/GEODE-READY.md`, `docs/ATOM-READY.md`, and
-`docs/BENCHMARKS-ETAPA3.md` for evidence and limits.
+it does not prove behavior on physical Geode hardware. See the
+[compatibility summary](../../docs/PLUGIN-COMPATIBILITY.md) for scope and
+limitations.

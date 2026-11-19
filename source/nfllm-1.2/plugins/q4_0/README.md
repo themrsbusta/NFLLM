@@ -25,9 +25,5 @@ invalid ABI and bounds. Differential tests compare the direct operation with
 decode-then-dot. DOS inference and the full quantization regressions pass on
 QEMU's generic 486 CPU model with 96 MiB.
 
-In three interleaved QEMU samples, Q4_0 direct matvec had a 6,372-tick median;
-the reference decode-then-F32 path had 10,381 ticks. This is a 1.63x whole-run
-improvement over that fallback on the same emulator, but the direct run remained
-slightly slower than F32 (6,262 ticks). This is not a physical Am486DX4 result.
-See [`ETAPA3-DIRECT-Q8-Q4.md`](../../docs/ETAPA3-DIRECT-Q8-Q4.md) and the
-artifact paths recorded there.
+See the [compatibility summary](../../docs/PLUGIN-COMPATIBILITY.md) for the
+verified scope and performance limitations.

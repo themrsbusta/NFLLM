@@ -14,8 +14,6 @@ kernel and is rejected unless the host profile declares the required ISA.
 RMSNorm and RoPE continue to use the x87 reference kernels.
 
 QEMU's Athlon proxy is only a compatibility test for the instructions used; it
-does not identify or emulate an exact Geode microarchitecture. The isolated test
-and Tiny1M inference passed. Three paired four-token runs produced the same
-sequence as x87. The guest did not record prompt ticks in this run, so the
-benchmark reports generation-phase ticks only; it makes no total-inference
-claim. See `docs/GEODE-READY.md` and `docs/BENCHMARKS-ETAPA3.md`.
+does not identify or emulate an exact Geode microarchitecture. See the
+[compatibility summary](../../docs/PLUGIN-COMPATIBILITY.md) for scope and
+limitations.

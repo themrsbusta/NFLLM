@@ -9,6 +9,6 @@ Q2_0 stores 64 two-bit values and one binary16 scale in an 18-byte block. Q2_K s
 
 The direct kernels passed the host differential (maximum absolute error 0),
 the QEMU generic 486 self-test, and one-token inference for both formats.
-Q2_0's direct path was slower than decode+F32 in the recorded Tiny1M run;
-Q2_K was slightly faster. Results and limitations are in
-`docs/ETAPA3-DIRECT-Q2-IQ3.md` and `docs/BENCHMARKS-ETAPA3.md`.
+Performance varies by format and target. See the
+[compatibility summary](../../docs/PLUGIN-COMPATIBILITY.md) for scope and
+limitations.

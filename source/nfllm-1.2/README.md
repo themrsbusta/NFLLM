@@ -109,10 +109,10 @@ additional architectures, operators, and quantization forms still require
 independent plugins. PDR is not a dependency. The separate `llama.cpp` upstream
 port remains a distinct objective.
 
-NFLLM 1.0 and 1.1 information and validation documents retained in `docs/` are
-historical unless explicitly labeled 1.2. This source tree corresponds to
-`v1.2.0`, titled **NFLLM 1.2.0 — Experimental Research Release**. The release
-is available at the [GitHub release page](https://github.com/themrsbusta/NFLLM/releases/tag/v1.2.0).
+This source tree corresponds to `v1.2.0`, titled **NFLLM 1.2.0 — Experimental
+Research Release**. Earlier releases remain available from the [GitHub releases
+page](https://github.com/themrsbusta/NFLLM/releases). The 1.2 release is
+available at the [direct release page](https://github.com/themrsbusta/NFLLM/releases/tag/v1.2.0).
 This source tree is a separate asset from the DOS runtime package. See
 [`docs/RELEASE-1.2.0.md`](docs/RELEASE-1.2.0.md) for its exact scope.
 

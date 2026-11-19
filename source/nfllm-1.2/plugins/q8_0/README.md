@@ -14,8 +14,9 @@ Both current kernels are baseline 386+x87 C. The direct kernel is not an MMX,
 transformer operations. If the direct operation is unavailable or the user
 selects `--backend reference`, NFLLM uses the earlier decode-then-F32 path.
 
-The plugin is statically linked as `q8_0_x87.lib`; the manifest is descriptive
-metadata. License status remains undeclared in project sources.
+The plugin's NFLLM-authored code is licensed under MIT; see the root `LICENSE`
+and [`THIRD-PARTY-NOTICES.md`](../../THIRD-PARTY-NOTICES.md). The manifest
+identifies the plugin for NFLLM's extension system.
 
 ## Verification
 
@@ -23,9 +24,5 @@ Host self-tests check signed values, FP16 scales and invalid input. Differential
 tests compare the direct path with decode-then-dot. DOS inference and the full
 quantization regressions pass on QEMU's generic 486 CPU model with 96 MiB.
 
-In three interleaved QEMU samples, Q8_0 direct matvec had a 6,481-tick median;
-the reference decode-then-F32 path had 10,436 ticks. This is a 1.61x whole-run
-improvement over that fallback on the same emulator, but the direct run remained
-slightly slower than F32 (6,262 ticks). This is not a physical Am486DX4 result.
-See [`ETAPA3-DIRECT-Q8-Q4.md`](../../docs/ETAPA3-DIRECT-Q8-Q4.md) and the
-artifact paths recorded there.
+See the [compatibility summary](../../docs/PLUGIN-COMPATIBILITY.md) for the
+verified scope and performance limitations.
