@@ -1,6 +1,5 @@
 /build/
-/source/nfllm/build/
-/source/upstream-llama.cpp/.git/
+/source/nfllm-1.2/build/
 **/__pycache__/
 *.py[cod]
 *.gguf

@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.2.0 Experimental Research Release
+
+- Publish the independently installable `.NFD` plugin runtime for 32-bit DOS.
+- Add NFModelIO, NFGraphVM and NFInt8Ops for the validated static INT8 TFLite
+  v3 operator subset, while keeping model weights and test frames out of the
+  repository and release archives.
+- Publish the runtime executable and complete source as separate release ZIPs
+  with SHA-256 sidecars.
+- Document the distributed graph-module hash difference from the validation
+  build outputs and keep the cause marked as unknown.
+- Keep the broader TinyEngine/MCUNet port goal open.
+
+## 1.1 Experimental Research Release
+
+- Publish the DOS/32A-based source and runtime as separate release assets.
+- Retain the original license, acknowledgments and historical validation
+  records in the v1.1 tag and release assets.
+
 ## 1.0 Experimental Research Release
 
 - Add Stage 1–3 source, static modules, format decoders and documented QEMU ISA

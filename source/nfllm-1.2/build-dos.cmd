@@ -2,7 +2,10 @@
 setlocal
 
 set "ROOT=%~dp0"
-if not defined WATCOM set "WATCOM=%ROOT%..\NF-DOS-6.0\tools\watcom2026"
+if not defined WATCOM (
+  echo ERROR: set WATCOM to an Open Watcom installation.
+  exit /b 2
+)
 if not exist "%WATCOM%\binnt64\wcl386.exe" (
   echo ERROR: set WATCOM to an Open Watcom installation containing binnt64\wcl386.exe.
   exit /b 2
