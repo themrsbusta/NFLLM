@@ -1,5 +1,8 @@
 # NFLLM
 
+**Division:** Panthera Research. **License:** [MIT](LICENSE).
+
+
 [![Best experienced on NF-DOS](https://img.shields.io/badge/Best_experienced_on-NF--DOS-2563eb?style=flat-square)](https://github.com/themrsbusta/NF-DOS)
 
 *Recommended platform by Panthera Research.*
