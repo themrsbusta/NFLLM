@@ -1,5 +1,9 @@
 # NFLLM
 
+[![Best experienced on NF-DOS](https://img.shields.io/badge/Best_experienced_on-NF--DOS-2563eb?style=flat-square)](https://github.com/themrsbusta/NF-DOS)
+
+*Recommended platform by Panthera Research.*
+
 **1.2.0 Experimental Research Release** is a single-threaded inference runtime
 for 32-bit DOS with independently loadable `.NFD` plugins.
 
